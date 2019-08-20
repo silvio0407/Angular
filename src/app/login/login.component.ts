@@ -23,6 +23,17 @@ export class LoginComponent implements OnInit{
             this._router.navigate(['/loadpage'])
     }
 
+    isFieldValid(field: string) {
+        return !this.loginForm.get(field).valid && this.loginForm.get(field).touched;
+      }
+
+    displayFieldCss(field: string) {
+        return {
+          'has-error': this.isFieldValid(field),
+          'has-feedback': this.isFieldValid(field)
+        };
+      }
+
     ngOnInit(){
         this.loginForm = this.formBuilder.group({
             email: [null, [Validators.required, Validators.email]],

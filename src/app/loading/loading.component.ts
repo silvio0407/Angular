@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 import { LoadingService } from './../service/loading.service';
 import { EmployeeModel } from '../model/employee.model';
@@ -10,7 +11,10 @@ import { EmployeeModel } from '../model/employee.model';
 })
 export class LoadingComponent implements OnInit{
    
-    constructor(private loadingService: LoadingService) {}
+    constructor(
+        private loadingService: LoadingService,
+        private _router: Router
+        ) {}
 
     employees = new Array<EmployeeModel>();
     
@@ -27,6 +31,10 @@ export class LoadingComponent implements OnInit{
                     );
                 });
             });
+    }
+
+    public voltar(): void{
+        this._router.navigate([''])
     }
     
 
